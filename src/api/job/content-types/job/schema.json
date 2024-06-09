@@ -1,0 +1,72 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "pay": {
+      "type": "decimal"
+    },
+    "isFulfilled": {
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "private": true
+    },
+    "noOfOpenings": {
+      "type": "integer",
+      "required": true,
+      "default": 1
+    },
+    "isDeleted": {
+      "type": "boolean",
+      "default": false,
+      "required": false,
+      "private": true
+    },
+    "applications": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::application.application",
+      "private": true,
+      "mappedBy": "job"
+    },
+    "description": {
+      "type": "richtext",
+      "required": true
+    },
+    "skills": {
+      "type": "string",
+      "required": true
+    },
+    "typeOfWork": {
+      "type": "enumeration",
+      "enum": [
+        "Development",
+        "Event",
+        "Front-Desk",
+        "Army",
+        "Tax & Audit",
+        "Consulting",
+        "Health Care"
+      ],
+      "required": true
+    },
+    "slug": {
+      "type": "customField",
+      "customField": "plugin::strapi-advanced-uuid.uuid"
+    }
+  }
+}
