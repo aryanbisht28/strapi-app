@@ -1,30 +1,29 @@
-"use strict";
-
 module.exports = (config, { strapi }) => {
   return async (ctx, next) => {
-    const { data } = ctx.request.body;
-    const { phoneNo, job } = data;
+      try {
+          console.log('ctx', ctx.request.body);
+          const { data } = ctx.request.body;
+          const { phoneNumber, job } = data;
+          const jobId = job.connect[0];
+          console.log(phoneNumber, jobId, job);
 
-    const jobId = job.connect[0];
-    console.log(phoneNo, jobId, job);
+          const existingEntry = await strapi.db
+              .query("api::application.application")
+              .findOne({
+                  where: {
+                      phoneNumber: phoneNumber,
+                      job: jobId,
+                  },
+              });
 
-    const existingEntry = await strapi.db
-      .query("api::application.application")
-      .findOne({
-        where: {
-          phoneNo: phoneNo,
-          job: jobId,
-        },
-      });
-
-    if (existingEntry) {
-      ctx.status = 400;
-      ctx.body = {
-        message:
-          "An entry with this phone number already exists for the specified job ID.",
-      };
-    } else {
-      await next();
-    }
+          if (existingEntry) {
+              ctx.body = { message: "Application already exists" };
+          } else {
+              await next();
+          }
+      } catch (error) {
+          console.error('Middleware error:', error);
+          ctx.throw(500, 'Internal Server Error');
+      }
   };
 };

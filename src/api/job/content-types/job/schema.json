@@ -67,6 +67,9 @@
     "slug": {
       "type": "customField",
       "customField": "plugin::strapi-advanced-uuid.uuid"
+    },
+    "location": {
+      "type": "string"
     }
   }
 }
