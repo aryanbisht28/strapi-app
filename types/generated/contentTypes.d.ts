@@ -382,9 +382,19 @@ export interface ApiApplicationApplication extends Schema.CollectionType {
     >;
     status: Attribute.Enumeration<['Under Review', 'Rejected ', 'Selected']> &
       Attribute.DefaultTo<'Under Review'>;
-    name: Attribute.String & Attribute.Required;
+    firstName: Attribute.String & Attribute.Required;
     email: Attribute.Email & Attribute.Required;
-    phoneNo: Attribute.BigInteger & Attribute.Required;
+    lastName: Attribute.String;
+    niNumber: Attribute.String;
+    postalCode: Attribute.String;
+    addressStreet: Attribute.String;
+    addressLine2: Attribute.String;
+    city: Attribute.String;
+    province: Attribute.String;
+    shareCode: Attribute.String;
+    siaNumber: Attribute.String;
+    siaExpiryDate: Attribute.String;
+    phoneNumber: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -448,6 +458,7 @@ export interface ApiJobJob extends Schema.CollectionType {
       Attribute.Required;
     slug: Attribute.UID &
       Attribute.CustomField<'plugin::strapi-advanced-uuid.uuid'>;
+    location: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

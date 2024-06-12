@@ -32,7 +32,7 @@
       "default": "Under Review",
       "required": false
     },
-    "name": {
+    "firstName": {
       "type": "string",
       "required": true
     },
@@ -41,10 +41,38 @@
       "required": true,
       "unique": false
     },
-    "phoneNo": {
-      "type": "biginteger",
-      "unique": false,
-      "required": true
+    "lastName": {
+      "type": "string"
+    },
+    "niNumber": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "addressStreet": {
+      "type": "string"
+    },
+    "addressLine2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "province": {
+      "type": "string"
+    },
+    "shareCode": {
+      "type": "string"
+    },
+    "siaNumber": {
+      "type": "string"
+    },
+    "siaExpiryDate": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
     }
   }
 }
