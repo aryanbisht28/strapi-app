@@ -6,11 +6,12 @@ module.exports = createCoreController("api::job.job", ({ strapi }) => ({
   async countByCategory(ctx) {
     try {
       const result = await strapi.db.connection.raw(`
-        SELECT type_of_work, COUNT(*) as count
+        SELECT type_of_work as category , COUNT(*) as count
         FROM jobs
+        WHERE is_fulfilled = false AND is_deleted = false 
         GROUP BY type_of_work
       `);
-      return ctx.send({ data: { result } });
+      return ctx.send({ data: result });
     } catch (err) {
       return ctx.throw(500, err);
     }
@@ -60,9 +61,6 @@ module.exports = createCoreController("api::job.job", ({ strapi }) => ({
         SELECT type_of_work , COUNT(id) from applications
         GROUP BY type_of_work   
         `);
-      // const countJobsGroupByPostalCode = await strapi.db.connection.raw(`
-
-      //   `)
       ctx.send({
         data: {
           countJobs: countJobs[0].count,

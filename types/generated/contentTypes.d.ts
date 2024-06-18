@@ -459,6 +459,7 @@ export interface ApiJobJob extends Schema.CollectionType {
     slug: Attribute.UID &
       Attribute.CustomField<'plugin::strapi-advanced-uuid.uuid'>;
     location: Attribute.String;
+    Company: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

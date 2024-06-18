@@ -70,6 +70,10 @@
     },
     "location": {
       "type": "string"
+    },
+    "Company": {
+      "type": "string",
+      "required": true
     }
   }
 }
